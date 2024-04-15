@@ -4,6 +4,8 @@ import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 import product.service.april_2024_productservice.DTOs.GenericProductDto;
 import product.service.april_2024_productservice.clients.FakeStoreProductClient;
+import product.service.april_2024_productservice.exceptions.GenericException;
+import product.service.april_2024_productservice.exceptions.ProductNotFoundException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,13 +20,21 @@ public class FakeStoreProductService implements ProductService{
     }
 
     @Override
-    public List<GenericProductDto> getAllProducts() {
-        return fakeStoreProductClient.getAllProducts();
+    public List<GenericProductDto> getAllProducts() throws ProductNotFoundException{
+        List<GenericProductDto> products = fakeStoreProductClient.getAllProducts();
+        if(products == null){
+            throw new ProductNotFoundException("The products are not available!!!");
+        }
+        return products;
     }
 
     @Override
-    public GenericProductDto getProductById(int id) {
-        return fakeStoreProductClient.getProductById(id);
+    public GenericProductDto getProductById(int id) throws GenericException {
+        GenericProductDto product = fakeStoreProductClient.getProductById(id);
+        if(product == null){
+            throw new GenericException("Generic Exception occurs!!!");
+        }
+        return product;
     }
 
     @Override
