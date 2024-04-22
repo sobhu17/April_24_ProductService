@@ -23,4 +23,8 @@ public class FakeStoreCartClient {
         ResponseEntity<GenericCartDto[]> response = restTemplate.getForEntity(cartUrl , GenericCartDto[].class);
         return List.of(response.getBody());
     }
+
+    public int cartDemo(){
+        return -1;
+    }
 }

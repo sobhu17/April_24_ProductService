@@ -9,4 +9,5 @@ import java.util.List;
 public interface CartService {
 
     public List<GenericCartDto> getCartForUser(int id) throws GenericException;
+    public int cartDemo() throws GenericException;
 }

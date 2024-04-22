@@ -17,7 +17,7 @@ public class ProductControllerAdvice {
     }
 
     @ExceptionHandler(GenericException.class)
-    public ResponseEntity<ExceptionDto> handleGenericException(GenericException ge){
+    public ResponseEntity<ExceptionDto> handleGenericExceptionForProduct(GenericException ge){
         ExceptionDto exceptionDto = new ExceptionDto(ge.getMessage() , HttpStatus.NOT_FOUND);
         return new ResponseEntity<>(exceptionDto , HttpStatus.NOT_FOUND);
     }

@@ -11,7 +11,7 @@ import product.service.april_2024_productservice.controllers.CartController;
 public class CartControllerAdvice {
 
     @ExceptionHandler(GenericException.class)
-    public ResponseEntity<ExceptionDto> handleGenericException(GenericException ge){
+    public ResponseEntity<ExceptionDto> handleGenericExceptionForCart(GenericException ge){
         ExceptionDto exceptionDto = new ExceptionDto(ge.getMessage() , HttpStatus.NOT_FOUND);
         return new ResponseEntity<>(exceptionDto , HttpStatus.NOT_FOUND);
     }

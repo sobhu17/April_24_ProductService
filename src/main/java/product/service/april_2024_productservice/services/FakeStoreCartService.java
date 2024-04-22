@@ -23,4 +23,14 @@ public class FakeStoreCartService implements CartService{
         List<GenericCartDto> cart = fakeStoreCartClient.getCartForUser(id);
         return cart;
     }
+
+    @Override
+    public int cartDemo() throws GenericException {
+        int val = fakeStoreCartClient.cartDemo();
+        if(val < 0){
+            throw  new GenericException("A generic exception occurs!!!");
+        }
+
+        return val;
+    }
 }

@@ -1,5 +1,6 @@
 package product.service.april_2024_productservice.services;
 
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import product.service.april_2024_productservice.DTOs.GenericProductDto;
 
@@ -30,5 +31,10 @@ public class SelfProductService implements ProductService{
     @Override
     public GenericProductDto updateProductById(int id, GenericProductDto product) {
         return null;
+    }
+
+    @Override
+    public int demoAPI() {
+        return 0;
     }
 }

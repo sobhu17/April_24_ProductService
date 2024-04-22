@@ -21,4 +21,9 @@ public class CartController {
     public List<GenericCartDto> getCartForUser(@PathVariable("userId") int id){
         return cartService.getCartForUser(id);
     }
+
+    @GetMapping("/cart/demo")
+    public int cartDemo(){
+        return cartService.cartDemo();
+    }
 }

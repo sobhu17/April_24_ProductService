@@ -67,4 +67,8 @@ public class FakeStoreProductClient {
         return response.getBody();
     }
 
+    public int demoAPI(){
+        return -1;
+    }
+
 }

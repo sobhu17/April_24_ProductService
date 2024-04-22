@@ -1,5 +1,6 @@
 package product.service.april_2024_productservice.controllers;
 
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.ResponseEntity;
 import product.service.april_2024_productservice.DTOs.GenericProductDto;
 import org.springframework.web.bind.annotation.*;
@@ -13,7 +14,7 @@ import java.util.List;
 public class ProductController {
     private ProductService productService;
 
-    public ProductController(ProductService productService){
+    public ProductController(@Qualifier("SelfProductService") ProductService productService){
         this.productService = productService;
     }
 
@@ -41,5 +42,10 @@ public class ProductController {
     @PutMapping("/products/{id}")
     public GenericProductDto updateProductById(@PathVariable("id") int id , @RequestBody GenericProductDto product){
         return productService.updateProductById(id , product);
+    }
+
+    @GetMapping("/demo")
+    public int demoAPI(){
+        return productService.demoAPI();
     }
 }
