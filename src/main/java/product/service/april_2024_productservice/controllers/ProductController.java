@@ -4,10 +4,12 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.ResponseEntity;
 import product.service.april_2024_productservice.DTOs.GenericProductDto;
 import org.springframework.web.bind.annotation.*;
-import product.service.april_2024_productservice.services.FakeStoreProductService;
+import product.service.april_2024_productservice.models.Product;
+//import product.service.april_2024_productservice.services.FakeStoreProductService;
 import product.service.april_2024_productservice.services.ProductService;
 
 import java.util.List;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/v1")
@@ -25,22 +27,22 @@ public class ProductController {
     }
 
     @GetMapping("/products/{id}")
-    public GenericProductDto getProductById(@PathVariable("id") int id){
+    public GenericProductDto getProductById(@PathVariable("id") UUID id){
         return productService.getProductById(id);
     }
 
     @PostMapping("/products")
-    public GenericProductDto createProduct(@RequestBody GenericProductDto product){
+    public GenericProductDto createProduct(@RequestBody Product product){
         return productService.createProduct(product);
     }
 
     @DeleteMapping("/products/{id}")
-    public GenericProductDto deleteProductById(@PathVariable("id") int id){
+    public GenericProductDto deleteProductById(@PathVariable("id") UUID id){
         return productService.deleteProductById(id);
     }
 
     @PutMapping("/products/{id}")
-    public GenericProductDto updateProductById(@PathVariable("id") int id , @RequestBody GenericProductDto product){
+    public GenericProductDto updateProductById(@PathVariable("id") UUID id , @RequestBody Product product){
         return productService.updateProductById(id , product);
     }
 

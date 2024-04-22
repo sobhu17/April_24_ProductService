@@ -10,6 +10,7 @@ import org.springframework.web.client.RestTemplate;
 import product.service.april_2024_productservice.DTOs.GenericProductDto;
 
 import java.util.List;
+import java.util.UUID;
 
 @Component
 public class FakeStoreProductClient {
@@ -27,7 +28,7 @@ public class FakeStoreProductClient {
     }
 
 
-    public GenericProductDto getProductById(int id) {
+    public GenericProductDto getProductById(UUID id) {
         RestTemplate restTemplate = restTemplateBuilder.build();
         ResponseEntity<GenericProductDto> response = restTemplate.getForEntity(specificProductRequestUrl , GenericProductDto.class , id);
         return response.getBody();
@@ -39,7 +40,7 @@ public class FakeStoreProductClient {
         return product;
     }
 
-    public GenericProductDto deleteProductById(int id) {
+    public GenericProductDto deleteProductById(UUID id) {
         RestTemplate restTemplate = restTemplateBuilder.build();
         RequestCallback requestCallback = restTemplate.acceptHeaderRequestCallback(GenericProductDto.class);
         ResponseExtractor<ResponseEntity<GenericProductDto>> responseExtractor = restTemplate.responseEntityExtractor(GenericProductDto.class);
@@ -48,7 +49,7 @@ public class FakeStoreProductClient {
         return response.getBody();
     }
 
-    public GenericProductDto updateProductById(int id, GenericProductDto product) {
+    public GenericProductDto updateProductById(UUID id, GenericProductDto product) {
         RestTemplate restTemplate = restTemplateBuilder.build();
 
         HttpHeaders headers = new HttpHeaders();
