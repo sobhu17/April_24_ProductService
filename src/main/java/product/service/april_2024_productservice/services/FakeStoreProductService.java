@@ -10,6 +10,7 @@ import product.service.april_2024_productservice.exceptions.ProductNotFoundExcep
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 @Service("FakeStoreProductService")
 public class FakeStoreProductService implements ProductService{
@@ -29,7 +30,7 @@ public class FakeStoreProductService implements ProductService{
     }
 
     @Override
-    public GenericProductDto getProductById(int id) throws ProductNotFoundException {
+    public GenericProductDto getProductById(UUID id) throws ProductNotFoundException {
         GenericProductDto product = fakeStoreProductClient.getProductById(id);
         if(product == null){
             throw new ProductNotFoundException("Product with id " + id + " doesn't exist!!!");
@@ -43,12 +44,12 @@ public class FakeStoreProductService implements ProductService{
     }
 
     @Override
-    public GenericProductDto deleteProductById(int id) {
+    public GenericProductDto deleteProductById(UUID id) {
         return fakeStoreProductClient.deleteProductById(id);
     }
 
     @Override
-    public GenericProductDto updateProductById(int id, GenericProductDto product) {
+    public GenericProductDto updateProductById(UUID id, GenericProductDto product) {
         return fakeStoreProductClient.updateProductById(id , product);
     }
 

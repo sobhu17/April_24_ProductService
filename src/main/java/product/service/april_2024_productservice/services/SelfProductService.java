@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 import product.service.april_2024_productservice.DTOs.GenericProductDto;
 
 import java.util.List;
+import java.util.UUID;
 
 @Service("SelfProductService")
 public class SelfProductService implements ProductService{
@@ -14,7 +15,7 @@ public class SelfProductService implements ProductService{
     }
 
     @Override
-    public GenericProductDto getProductById(int id) {
+    public GenericProductDto getProductById(UUID id) {
         return null;
     }
 
@@ -24,12 +25,12 @@ public class SelfProductService implements ProductService{
     }
 
     @Override
-    public GenericProductDto deleteProductById(int id) {
+    public GenericProductDto deleteProductById(UUID id) {
         return null;
     }
 
     @Override
-    public GenericProductDto updateProductById(int id, GenericProductDto product) {
+    public GenericProductDto updateProductById(UUID id, GenericProductDto product) {
         return null;
     }
 
