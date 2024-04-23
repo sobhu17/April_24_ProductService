@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import product.service.april_2024_productservice.DTOs.GenericProductDto;
+import product.service.april_2024_productservice.exceptions.ProductNotFoundException;
 import product.service.april_2024_productservice.mapper.GenericProductDtoMapper;
 import product.service.april_2024_productservice.models.Product;
 import product.service.april_2024_productservice.repositories.ProductRepository;
@@ -30,9 +31,11 @@ public class SelfProductService implements ProductService{
     }
 
     @Override
-    public GenericProductDto getProductById(UUID id) {
-        Optional<Product> product = productRepository.findById(id);
-        return  GenericProductDtoMapper.convertProductEntityToProductResponseDTO(product.get());
+    public GenericProductDto getProductById(UUID id) throws ProductNotFoundException{
+        Product product = productRepository.findById(id).orElseThrow(
+                () -> new ProductNotFoundException("Product with id: " + id + " isn't available!!!")
+        );
+        return  GenericProductDtoMapper.convertProductEntityToProductResponseDTO(product);
     }
 
     @Override
@@ -50,8 +53,18 @@ public class SelfProductService implements ProductService{
 
     @Override
     public GenericProductDto updateProductById(UUID id, Product product) {
-        product.setId(id);
-        Product response = productRepository.save(product);
+        Product savedProduct = productRepository.findById(id).orElseThrow(
+                () -> new ProductNotFoundException("Product with id: " + id + " isn't available!!!")
+        );
+
+        savedProduct.setTitle(product.getTitle());
+        savedProduct.setCategory(product.getCategory());
+        savedProduct.setRating(product.getRating());
+        savedProduct.setImage(product.getImage());
+        savedProduct.setPrice(product.getPrice());
+        savedProduct.setDescription(product.getDescription());
+
+        Product response = productRepository.save(savedProduct);
         return GenericProductDtoMapper.convertProductEntityToProductResponseDTO(response);
     }
 
