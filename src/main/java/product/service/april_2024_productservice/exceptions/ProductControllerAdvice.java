@@ -21,4 +21,10 @@ public class ProductControllerAdvice {
         ExceptionDto exceptionDto = new ExceptionDto(ge.getMessage() , HttpStatus.NOT_FOUND);
         return new ResponseEntity<>(exceptionDto , HttpStatus.NOT_FOUND);
     }
+
+    @ExceptionHandler(CategoryNotFoundException.class)
+    public ResponseEntity<ExceptionDto> handleCategoryNotFoundException(CategoryNotFoundException ce){
+        ExceptionDto exceptionDto = new ExceptionDto(ce.getMessage() , HttpStatus.NOT_FOUND);
+        return new ResponseEntity<>(exceptionDto , HttpStatus.NOT_FOUND);
+    }
 }

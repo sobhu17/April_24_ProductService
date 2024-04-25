@@ -26,11 +26,6 @@ public class FakeStoreCartService implements CartService{
 
     @Override
     public int cartDemo() throws GenericException {
-        int val = fakeStoreCartClient.cartDemo();
-        if(val < 0){
-            throw  new GenericException("A generic exception occurs!!!");
-        }
-
-        return val;
+        return 0;
     }
 }
