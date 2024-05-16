@@ -24,7 +24,7 @@ public class ProductMapper {
         productResponseDto.setRating(product.getRating());
         productResponseDto.setTitle(product.getTitle());
         productResponseDto.setDescription(product.getDescription());
-        productResponseDto.setCategory(product.getCategory());
+        productResponseDto.setCategory(product.getCategory().getName());
         return productResponseDto;
     }
 }

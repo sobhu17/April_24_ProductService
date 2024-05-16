@@ -13,6 +13,6 @@ import java.util.List;
 @Setter
 public class Category extends BaseModel{
     private String name;
-    @OneToMany(fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "category", fetch = FetchType.LAZY)
     private List<Product> products;
 }
